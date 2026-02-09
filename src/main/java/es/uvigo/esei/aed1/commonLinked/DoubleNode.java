@@ -8,9 +8,9 @@ public class DoubleNode {
   private int value;
 
   public DoubleNode(DoubleNode previous, int value, DoubleNode next) {
-    this.next = null;
-    this.previous = null;
-    this.value = 0;
+    this.next = next;
+    this.value = value;
+    this.previous = previous;
 
   }
 
