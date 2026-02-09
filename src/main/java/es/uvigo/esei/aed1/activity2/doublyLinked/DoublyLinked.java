@@ -2,36 +2,56 @@
 package es.uvigo.esei.aed1.activity2.doublyLinked;
 
 import es.uvigo.esei.aed1.commonLinked.DoubleNode;
+import es.uvigo.esei.aed1.commonLinked.Node;
 
 public class DoublyLinked {
 
-;
+  private DoubleNode first;
+  private DoubleNode last;
+  private int numOfValues;
 
   public DoublyLinked() {
-
+    this.first = null;
+    this.last = null;
+    this.numOfValues = 0;
   }
 
   public boolean isEmpty() {
-    
-    return true;
+
+    return this.first == null;
   }
 
   public int size() {
-    
-    return 0;
+
+    return this.numOfValues;
   }
 
   public int numberOfOccurrences(int value) {
-    
-    return 0;
+
+    int number = 0;
+
+    for (DoubleNode current = first; current != null; current = current.getNext()) {
+      if (current.hasValue(value)) {
+        number++;
+      }
+
+    }
+
+    return number;
   }
 
   public boolean contains(int value) {
-    
-    return true;
+
+    DoubleNode current = first;
+
+    while (current != null && !current.hasValue(value)) {
+      current = current.getNext();
+    }
+
+    return current!=null;
   }
 
-  public void addFirst(int value) { 
+  public void addFirst(int value) {
 
   }
 
@@ -40,12 +60,12 @@ public class DoublyLinked {
   }
 
   public void remove(int value) {
-  
+
   }
 
   @Override
   public String toString() {
-    
+
     return "";
   }
 
