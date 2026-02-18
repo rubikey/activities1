@@ -152,7 +152,7 @@ public class DoublyLinked {
   public String toString() {
     StringBuilder cadena = new StringBuilder();
 
-    DoubleNode current = first;
+    DoubleNode current = this.first;
 
     while (current != null) {
       cadena.append(current.getValue()).append(" ");
