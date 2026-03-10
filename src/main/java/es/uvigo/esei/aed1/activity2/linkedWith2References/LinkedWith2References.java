@@ -31,6 +31,10 @@ public class LinkedWith2References {
   // Contar el número de veces que aparece un elemento en la estructura
   public int numberOfOccurrences(int value) {
 
+    if (this.isEmpty()) {
+      return 0;
+    }
+
     int number = 0;
 
     for (Node current = this.first; current != null; current = current.getNext()) {
@@ -116,7 +120,7 @@ public class LinkedWith2References {
 
     Node current = this.first;
 
-    while (current.getNext() != null && !current.getNext().hasValue(value)) {
+    while (current.getNext() != null && !current.hasValue(value)) {
       current = current.getNext();
     }
 
@@ -133,7 +137,7 @@ public class LinkedWith2References {
     else {
       if (current.getNext() == null) {
         this.last = current;
-        // current.setNext(null);
+        current.setNext(null);
 
         // ou que esté polo medio
       } else {

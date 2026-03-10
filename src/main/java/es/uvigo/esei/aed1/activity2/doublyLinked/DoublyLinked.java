@@ -18,7 +18,7 @@ public class DoublyLinked {
 
   public boolean isEmpty() {
 
-    return this.first == null;
+    return this.first == null && this.last == null;
   }
 
   public int size() {
@@ -27,6 +27,10 @@ public class DoublyLinked {
   }
 
   public int numberOfOccurrences(int value) {
+
+    if (this.isEmpty()) {
+      return 0;
+    }
 
     int number = 0;
 
