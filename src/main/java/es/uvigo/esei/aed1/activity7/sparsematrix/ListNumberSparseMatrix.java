@@ -58,6 +58,8 @@ public class ListNumberSparseMatrix implements NumberSparseMatrix {
     if (i <= 0 || i > numRows || j <= 0 || j > numCols) {
       throw new IndexOutOfBoundsException("Out of Bound");
     }
+
+    
   
 
   ValueRow targetRow = null;

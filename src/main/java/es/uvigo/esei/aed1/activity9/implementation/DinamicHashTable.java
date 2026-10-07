@@ -10,6 +10,13 @@ public class DinamicHashTable<T> implements HashTable<T> {
 
     @SuppressWarnings("unchecked")
     public DinamicHashTable(int capacity) throws IllegalArgumentException {
+        data = new List[capacity];
+
+        for (int i = 0; i < capacity; i++) {
+            data[i] = new LinkedList<>();
+        }
+
+        numElems = 0;
 
     }
 
@@ -18,34 +25,87 @@ public class DinamicHashTable<T> implements HashTable<T> {
     }
 
     private int functionHash(T key) {
-        return -1;
+        return Math.abs(key.hashCode()) % data.length;
     }
 
     @Override
     public boolean add(T elem) {
-        
-        return false;
+
+        int index = functionHash(elem);
+
+        List<T> lista = data[index];
+
+        if (lista.contains(elem)) {
+            return false;
+        }
+
+        lista.addLast(elem);
+        numElems++;
+
+        return true;
     }
 
     @Override
     public boolean search(T elem) {
-        
+        int index = functionHash(elem);
+
+        List<T> lista = data[index];
+
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).equals(elem)) {
+                T value = lista.remove(i);
+                lista.add(0, value);
+                return true;
+
+            }
+        }
+
         return false;
     }
 
     @Override
     public boolean remove(T elem) {
-        
-        return false;       
+
+        int index = functionHash(elem); // calculamos index con la functionHash
+
+        List<T> lista = data[index]; // accedemos a la lista con index
+
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).equals(elem)) {
+                lista.remove(i);
+                numElems--;
+                return true;
+
+            }
+        }
+
+        return false;
     }
 
     @Override
     public int size() {
-        return -1;
+        int suma = 0;
+
+        for (int i = 0; i < data.length; i++) {
+            for (T val : data[i]) {
+                suma = suma + 1;
+            }
+
+        }
+
+        return suma;
     }
 
     @Override
     public T get() {
+        
+
+        for (int i = 0; i < data.length; i++) {
+            if (!data[i].isEmpty()) {
+                return data[i].get(0);
+            }
+
+        }
 
         return null;
     }

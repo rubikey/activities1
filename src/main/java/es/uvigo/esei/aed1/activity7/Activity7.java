@@ -65,14 +65,12 @@ public class Activity7 {
 
   public static <T> boolean allValuesAppearancesAreEqual(List<T> list) throws NullPointerException {
 
-    if (list == null) {
-      throw new NullPointerException("Null List");
-    }
+    if (list == null) throw new NullPointerException("Null List");
+    
 
     // caso base
-    if (list.isEmpty() || list.size() == 1) {
-      return true;
-    }
+    if (list.isEmpty() || list.size() == 1) return true;
+    
 
     // primer elemento
     T first = list.get(0);

@@ -9,34 +9,46 @@ public class Runway {
     private int numRunway;
     private DinamicHashTable<String> destinationsPartners;
     private Queue<Flight> flightsOnStandby;
-    
-    public Runway(int numRunway){
-  
-    }
-    
-    public void assignDestination(String destination){
 
-        
-    }
-    
-    public void assignFlight(Flight v){
+    public Runway(int numRunway) {
+        this.numRunway = numRunway; // numero de pista
+        destinationsPartners = new DinamicHashTable<>(); // destinos asociados
+        flightsOnStandby = new LinkedQueue<>(); // cola de vuelos en espera
 
     }
-    
-    public Flight removeFlight(){
-        
-        return null;
+
+    public void assignDestination(String destination) {
+
+        destinationsPartners.add(destination);
+
     }
-    
-    public int getNumRunway(){
-        return 0;
+
+    public void assignFlight(Flight v) {
+
+        flightsOnStandby.add(v);
     }
-    
-    public boolean isDestination(String destination){
-        return false;
+
+    public Flight removeFlight() {
+
+        if (flightsOnStandby.isEmpty()) {
+            return null;
+        }
+
+        Flight vuelo = flightsOnStandby.remove();
+
+        return vuelo;
     }
-    
-    public int numberFlight(){
-        return 0;
-    }      
+
+    public int getNumRunway() {
+        return this.numRunway;
+    }
+
+    public boolean isDestination(String destination) {
+
+        return destinationsPartners.search(destination);
+    }
+
+    public int numberFlight() {
+        return flightsOnStandby.size();
+    }
 }
